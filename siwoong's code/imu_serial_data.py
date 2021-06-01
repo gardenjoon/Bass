@@ -3,13 +3,13 @@
 import serial
 import rospy
 from std_msgs.msg import Float64
-ser = serial.Serial('/dev/ttyUSB0', 115200, timeout =1)
+imu_ros = serial.Serial('/dev/ttyUSB0', 115200, timeout =1)
 
 def ang():
     pub= rospy.Publisher('imu',Float64,queue_size=10)
     rospy.init_node('imu',anonymous =True)
     while not rospy.is_shutdown():
-        b=ser.readline()
+        b=imu_ros.readline()
         print(b)
         pub.publish(b)
 
